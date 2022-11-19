@@ -34,7 +34,11 @@ export default function PlayerForm({ dispatch }) {
         console.log(data);
         setStatus('success');
         setError(null);
-        dispatch({ type: 'setPlayer', id: data.id, name: name });
+        dispatch({
+          type: 'setPlayer',
+          player_id: data.player_id,
+          player_name: name,
+        });
       })
       .catch((err) => {
         console.log('error');

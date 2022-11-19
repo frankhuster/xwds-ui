@@ -3,10 +3,15 @@ import gameReducer from '../game/gameReducer';
 import Game from '../game/Game';
 import './App.css';
 import PlayerForm from './PlayerForm';
+import GameForm from './GameForm';
 
-function renderPlayer(game, dispatch) {
+function render(game, dispatch) {
   if (game.hasPlayer()) {
-    return <div>Welcome back, {game.getPlayerName()}</div>;
+    if (game.isOngoing()) {
+      return <Game dispatch={dispatch} />;
+    } else {
+      return <GameForm game={game} dispatch={dispatch} />;
+    }
   } else {
     return <PlayerForm dispatch={dispatch} />;
   }
@@ -19,5 +24,5 @@ export default function App() {
   });
   const game = new Game(reducedGame);
 
-  return <div className="App">{renderPlayer(game, dispatch)}</div>;
+  return <div className="App">{render(game, dispatch)}</div>;
 }

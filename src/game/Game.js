@@ -2,6 +2,7 @@ export default class Game {
   constructor(reducedGame) {
     this.playerId = reducedGame.playerId;
     this.playerName = reducedGame.playerName;
+    this.gameId = reducedGame.gameId;
   }
 
   setPlayer(id, name) {
@@ -19,10 +20,23 @@ export default class Game {
     return this.playerName;
   }
 
+  getPlayerId() {
+    return this.playerId;
+  }
+
+  setGame(id) {
+    this.gameId = id;
+  }
+
+  isOngoing() {
+    return this.gameId;
+  }
+
   reduce() {
     return {
       playerId: this.playerId,
       playerName: this.playerName,
+      gameId: this.gameId,
     };
   }
 }
